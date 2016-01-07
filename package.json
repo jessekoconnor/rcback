@@ -1,0 +1,24 @@
+{
+  "name": "rcback",
+  "version": "1.0.0",
+  "description": "Help organize your social life",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessekoconnor/rcback.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessekoconnor/rcback/issues"
+  },
+  "homepage": "https://github.com/jessekoconnor/rcback#readme",
+  "dependencies": {
+    "cool-ascii-faces": "^1.3.3",
+    "express": "^4.13.3"
+  }
+}
