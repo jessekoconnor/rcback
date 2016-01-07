@@ -1,0 +1,15 @@
+Oy!
+
+
+
+To run locally:
+
+heroku local
+
+
+
+Test it out by runing locally, then running this command in another window:
+
+curl localhost:5000/cool
+
+you should see a "cool face"
