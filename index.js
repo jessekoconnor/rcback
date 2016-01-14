@@ -6,6 +6,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/cool', function(request, response) {
   response.send(cool());
+  console.log('sup bro-han');
 });
 
 app.listen(app.get('port'), function() {
