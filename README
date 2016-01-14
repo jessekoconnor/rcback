@@ -4,8 +4,8 @@ Oy!
 
 To run locally:
 
+npm install
 heroku local
-
 
 
 Test it out by runing locally, then running this command in another window:
