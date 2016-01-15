@@ -1,17 +1,12 @@
-Oy!
+"Tough times don't last. Tough people do.” - Bruce Arians
 
-"Tough times don't last. Tough people do.” CMS
-
-1000fun
+=========================================
+RoleCall App
+by Christopher Schwab and Jesse O'Connor
+=========================================
 
 To run locally:
-
-npm install
-heroku local
-
-
-Test it out by runing locally, then running this command in another window:
-
-curl localhost:5000/cool
-
-you should see a "cool face"
+	1. npm install
+	2. heroku local
+	3. enter this command in another window: curl localhost:5000/cool
+	4. you should see a "cool face" :p
