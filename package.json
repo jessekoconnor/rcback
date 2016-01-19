@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jessekoconnor/rcback#readme",
   "dependencies": {
     "cool-ascii-faces": "^1.3.3",
+    "cors": "^2.7.1",
     "express": "^4.13.3"
   }
 }

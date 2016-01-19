@@ -1,12 +1,20 @@
 var express = require('express');
+var cors = require('cors');
 var app = express();
+
+// app.use(cors);
 var cool = require('cool-ascii-faces');
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/cool', function(request, response) {
   response.send(cool());
-  console.log('jah live');
 });
 
 app.listen(app.get('port'), function() {
