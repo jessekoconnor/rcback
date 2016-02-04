@@ -2,7 +2,7 @@ var express = require('express');
 var cors = require('cors');
 var app = express();
 
-// app.use(cors);
+app.use(cors());
 var cool = require('cool-ascii-faces');
 
 // app.use(function(req, res, next) {
@@ -14,6 +14,7 @@ var cool = require('cool-ascii-faces');
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/cool', function(request, response) {
+  console.log('/cool has been hit');
   response.send(cool());
 });
 
