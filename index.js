@@ -17,6 +17,6 @@ app.get('/cool', function(request, response) {
   response.send(cool());
 });
 
-app.listen(app.get('port'), function() {
+app.listen(app.get('port'), 'rollcall.local', function() {
   console.log('Node app is running on port', app.get('port'));
 });
