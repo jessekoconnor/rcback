@@ -35,6 +35,6 @@ app.post('/storeUser', upload.array(), function(req, res) {
     res.json(req.body);
 });
 
-app.listen(app.get('port'), 'rollcall.local', function() {
+app.listen(app.get('port'), 'localhost', function() {
     console.log('Node app is running on port', app.get('port'));
 });
