@@ -7,6 +7,11 @@ by Christopher Schwab and Jesse O'Connor
 
 To run locally:
 	1. npm install
-	2. heroku local
-	3. enter this command in another window: curl localhost:5000/cool
-	4. you should see a "cool face" :p
+	2. npm start
+
+
+Endpoints: (just run 'curl localhost:5000' + endpoint to hit it from the command line while its running locally)
+    /cool
+        - returns a cool persons face
+    /query
+        - queries for the tables in the database 'test'

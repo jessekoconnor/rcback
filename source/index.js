@@ -3,6 +3,8 @@ var cool = require('cool-ascii-faces');
 var cors = require('cors');
 var app = express();
 
+var database = require('./database');
+
 var app = require('express')();
 var bodyParser = require('body-parser');
 var multer = require('multer'); // v1.0.5
@@ -17,6 +19,14 @@ app.use(cors());
 app.get('/cool', function(request, response) {
     console.log('/cool has been hit');
     response.send(cool());
+});
+
+app.get('/query', function(request, response) {
+    console.log('/query has been hit');
+    database.showTables().then(function(res) {
+        response.send(res);
+    });
+
 });
 
 app.post('/storeUser', upload.array(), function(req, res) {
