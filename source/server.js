@@ -19,6 +19,6 @@ function start(webserver) {
 }
 
 module.exports = {
-    server: express(),
+    server: app,
     start: start
 };

@@ -17,22 +17,26 @@ function addRoutes(webServer) {
 
     });
 
-    webServer.get('/firends', function(request, response) {
+    webServer.get('/friends', function(request, response) {
         console.log('/friends ahs been hit');
         var mockFriends = [{
             id: '1',
             name: "Chris",
             plansTonight: "Busy",
+            mood: cool()
         }, {
             id:'2',
             name: "Nick",
-            plansTonight: "Blue Mermaid for open mic"
+            plansTonight: "Blue Mermaid for open mic",
+            mood: cool()
         }, {
             id:'3',
             name: "Ryan",
-            plansTonight: "Craft beers at coat"
+            plansTonight: "Craft beers at coat",
+            mood: cool()
         }];
 
+        response.send(mockFriends);
     });
 
     webServer.post('/storeUser', upload.array(), function(req, res) {
