@@ -6,8 +6,7 @@ by Christopher Schwab and Jesse O'Connor
 =========================================
 
 To run locally:
-	1. npm install
-	2. npm start
+	1. npm start
 
 
 Endpoints: (just run 'curl localhost:5000' + endpoint to hit it from the command line while its running locally)

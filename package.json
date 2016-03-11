@@ -4,7 +4,7 @@
   "description": "Help organize your social life",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "npm install && ./node_modules/nodemon/bin/nodemon.js -w ./source/ index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +24,7 @@
     "express": "^4.13.3",
     "multer": "^1.1.0",
     "mysql": "^2.10.2",
+    "nodemon": "^1.9.1",
     "q": "^1.4.1"
   }
 }
