@@ -2,6 +2,8 @@ var cool = require('cool-ascii-faces');
 var database = require('./database');
 var multer = require('multer'); // v1.0.5
 var upload = multer(); // for parsing multipart/form-data
+var bodyParser = require('body-parser');
+
 
 function addRoutes(webServer) {
     webServer.get('/cool', function(request, response) {
@@ -39,10 +41,26 @@ function addRoutes(webServer) {
         response.send(mockFriends);
     });
 
-    webServer.post('/storeUser', upload.array(), function(req, res) {
-        console.log('/storeUser has been hit');
-        console.log(JSON.stringify(req.body));
-        res.json(req.body);
+    // create application/json parser
+    var jsonParser = bodyParser.json()
+
+    webServer.post('/saveUser', jsonParser, function(request, response) {
+        var user = request.body;
+        console.log('/saveUser has been hit: ', user);
+        return database.storeUser(user).then(function(res) {
+            console.log('saveUser res: ', res);
+            response.json(res);
+        }).catch(function(err) {
+            console.log('saveUser err: ', err);
+            response.json(err);
+        });
+    });
+
+    webServer.post('/printUser', upload.array(), function(request, response) {
+        console.log('/printUser has been hit:');
+        console.log(JSON.stringify(request.body));
+
+        response.json(request.body);
     });
 }
 

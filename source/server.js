@@ -9,8 +9,6 @@ var app = express();
 function start(webserver) {
     app.set('port', (process.env.PORT || 5000));
 
-    app.use(bodyParser.json()); // for parsing application/json
-    app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
     app.use(cors());
 
     app.listen(app.get('port'), 'localhost', function() {

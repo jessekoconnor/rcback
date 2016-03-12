@@ -14,3 +14,11 @@ Endpoints: (just run 'curl localhost:5000' + endpoint to hit it from the command
         - returns a cool persons face
     /query
         - queries for the tables in the database 'test'
+    /saveUser
+        - saves a user into the database
+
+
+Examples:
+    save a user in the database
+
+        curl -X POST -H "Content-Type: application/json" --data '{"name":"jesse wiz", "schedule":"free", "mood":"happy"}' http://localhost:5000/saveUser

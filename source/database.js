@@ -2,8 +2,8 @@ var mysql      = require('mysql');
 var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '',
-    database : 'test'
+    password : 'treestump',
+    database : 'rollcall'
 });
 var Q = require('q');
 
@@ -12,10 +12,10 @@ var Q = require('q');
  * @param query - this is a string query
  * @returns a promise, resolves on the matching rows
  */
-function makeQuery(query) {
+function makeQuery(query, post) {
     return Q.Promise(function(resolve, reject) {
         connection.connect();
-        connection.query(query, function(err, rows, fields) {
+        connection.query(query, post, function(err, rows, fields) {
             if (err) reject(err);
 
             resolve(rows);
@@ -38,9 +38,19 @@ function getAllUsers() {
     return makeQuery('SELECT * FROM users');
 }
 
+/**
+ * Store a user in the user database
+ */
+function storeUser(user) {
+    var queryString = "INSERT INTO users (`name`, `schedule`, `mood`) VALUES ('" + user.name + "', '" + user.schedule + "', '" + user.mood + "');";
+
+    return makeQuery(queryString);
+}
+
 module.exports = {
     showTables: showTables,
     getAllUsers: getAllUsers,
-    makeQuery: makeQuery
+    makeQuery: makeQuery,
+    storeUser: storeUser
 };
 
