@@ -14,13 +14,11 @@ var Q = require('q');
  */
 function makeQuery(query, post) {
     return Q.Promise(function(resolve, reject) {
-        connection.connect();
         connection.query(query, post, function(err, rows, fields) {
             if (err) reject(err);
 
             resolve(rows);
         });
-        connection.end();
     });
 }
 
