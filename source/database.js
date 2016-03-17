@@ -1,7 +1,7 @@
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'root',
+    user     : 'rollcall',
     password : 'treestump',
     database : 'rollcall'
 });
@@ -15,18 +15,14 @@ var Q = require('q');
 function makeQuery(query, post) {
     return Q.Promise(function(resolve, reject) {
         connection.query(query, post, function(err, rows, fields) {
-            if (err) reject(err);
+            if (err) {
+                console.log(err);
+                reject(err);
+            }
 
             resolve(rows);
         });
     });
-}
-
-/**
- * Function to return all tables in the database
- */
-function showTables() {
-    return makeQuery('SHOW TABLES;');
 }
 
 /**
@@ -45,10 +41,25 @@ function storeUser(user) {
     return makeQuery(queryString);
 }
 
+/**
+ * Function to return all tables in the database
+ */
+function showTables() {
+    return makeQuery('SHOW TABLES;');
+}
+
+/**
+ * Function to return all databases
+ */
+function showDatabases() {
+    return makeQuery('SHOW DATABASES;');
+}
+
 module.exports = {
-    showTables: showTables,
     getAllUsers: getAllUsers,
     makeQuery: makeQuery,
-    storeUser: storeUser
+    storeUser: storeUser,
+    showTables: showTables,
+    showDatabases: showDatabases,
 };
 

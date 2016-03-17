@@ -41,13 +41,6 @@ function addRoutes(webServer) {
         });
     });
 
-    webServer.post('/printUser', upload.array(), function(request, response) {
-        console.log('/printUser has been hit:');
-        console.log(JSON.stringify(request.body));
-
-        response.json(request.body);
-    });
-
     ////////////////////
     // ENDPOINTS RETURNING MOCK DATA
     ///////////////////
@@ -79,6 +72,26 @@ function addRoutes(webServer) {
     webServer.get('/cool', function(request, response) {
         console.log('/cool has been hit, returning a smiley face');
         response.send(cool());
+    });
+
+    webServer.get('/showTables', function(request, response) {
+        console.log('/queries has been hit, returning all tables in the database \'rollcall\'');
+        response.send(database.showTables().then(function(response) {
+            response.send(response);
+        }).catch(function(err) {
+            console.log(err);
+            response.send(err);
+        }));
+    });
+
+    webServer.get('/showDatabases', function(request, response) {
+        console.log('/showDatabases has been hit, returning all database');
+        response.send(database.showDatabases().then(function(response) {
+            response.send(response);
+        }).catch(function(err) {
+            console.log(err);
+            response.send(err);
+        }));
     });
 }
 

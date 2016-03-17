@@ -7,6 +7,11 @@ by Christopher Schwab and Jesse O'Connor
 
 To run locally:
 	1. npm start
+	2. You need mysql going too. Heres what you need to do after you log into mysql as root:
+	    CREATE USER 'rollcall'@'localhost' IDENTIFIED BY 'treestump';
+	    GRANT ALL PRIVILEGES ON *.* TO 'rollcall'@'localhost'
+            ->     WITH GRANT OPTION;
+
 
 
 Endpoints: (just run 'curl localhost:5000' + endpoint to hit it from the command line while its running locally)
@@ -16,9 +21,14 @@ Endpoints: (just run 'curl localhost:5000' + endpoint to hit it from the command
         - queries for the tables in the database 'test'
     /saveUser
         - saves a user into the database
+    /showTables
+        - shows tables in the rollcall repo
+    /showDatabases
+        - show the databases in the database
 
 
 Examples:
     save a user in the database
 
         curl -X POST -H "Content-Type: application/json" --data '{"name":"jesse wiz", "schedule":"free", "mood":"happy"}' http://localhost:5000/saveUser
+
