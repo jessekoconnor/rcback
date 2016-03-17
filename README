@@ -25,10 +25,6 @@ Endpoints: (just run 'curl localhost:5000' + endpoint to hit it from the command
         - returns a mock friends array
     /cool
         - returns a cool persons face
-    /showTables
-        - shows tables in the rollcall repo
-    /showDatabases
-        - show the databases in the database
 
 Examples:
     save a user in the database
