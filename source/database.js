@@ -1,7 +1,7 @@
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'rollcall',
+    user     : 'root',
     password : 'treestump',
     database : 'rollcall'
 });
@@ -12,9 +12,9 @@ var Q = require('q');
  * @param query - this is a string query
  * @returns a promise, resolves on the matching rows
  */
-function makeQuery(query, post) {
+function makeQuery(query) {
     return Q.Promise(function(resolve, reject) {
-        connection.query(query, post, function(err, rows, fields) {
+        connection.query(query, function(err, rows, fields) {
             if (err) {
                 console.log(err);
                 reject(err);

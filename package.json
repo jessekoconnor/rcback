@@ -4,7 +4,7 @@
   "description": "Help organize your social life",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && ./node_modules/nodemon/bin/nodemon.js -w ./source/ index.js",
+    "start": "npm install && ./node_modules/nodemon/bin/nodemon.js -w ./source/ ./source/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,11 +18,9 @@
   },
   "homepage": "https://github.com/jessekoconnor/rcback#readme",
   "dependencies": {
-    "body-parser": "^1.14.2",
-    "cool-ascii-faces": "^1.3.3",
+    "cool-ascii-faces": "^1.3.4",
     "cors": "^2.7.1",
     "express": "^4.13.3",
-    "multer": "^1.1.0",
     "mysql": "^2.10.2",
     "nodemon": "^1.9.1",
     "q": "^1.4.1"

@@ -1,22 +1,20 @@
-var cors = require('cors');
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+'use strict';
+const cors = require('cors');
+const express = require('express');
 
-/**
- * Starts the express server
- */
-function start(webserver) {
-    app.set('port', (process.env.PORT || 5000));
+const router = require('./routes');
 
-    app.use(cors());
+// Constants
+const PORT = 8080;
 
-    app.listen(app.get('port'), 'localhost', function() {
-        console.log('Node app is running on port', app.get('port'));
-    });
-}
+// App
+const app = express();
 
-module.exports = {
-    server: app,
-    start: start
-};
+// Add routes
+router.addRoutes(app);
+
+// use cors
+app.use(cors());
+
+app.listen(PORT);
+console.log('Running on http://localhost:' + PORT);

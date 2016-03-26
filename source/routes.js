@@ -5,11 +5,11 @@
 /**
  * Imports required for
  */
-var cool = require('cool-ascii-faces');
+const cool = require('cool-ascii-faces');
 var database = require('./database');
-var multer = require('multer'); // v1.0.5
-var upload = multer(); // for parsing multipart/form-data
-var bodyParser = require('body-parser');
+//var multer = require('multer'); // v1.0.5
+//var upload = multer(); // for parsing multipart/form-data
+//var bodyParser = require('body-parser');
 
 /**
  * Takes a webserver and adds routes to it
@@ -17,33 +17,44 @@ var bodyParser = require('body-parser');
  */
 function addRoutes(webServer) {
 
-    webServer.get('/getAllFriends', function(request, response) {
-        console.log('/getAllFriends has been hit');
-        return database.getAllUsers().then(function(res) {
-            response.send(res);
-        }).catch(function(err) {
-            response.send(err);
-        });
+    webServer.get('/', function (req, res) {
+        res.send('Hello world\n');
     });
 
-    // create application/json parser to allow specific endpoints to decipher json
-    var jsonParser = bodyParser.json();
-
-    webServer.post('/saveUser', jsonParser, function(request, response) {
-        var user = request.body;
-        console.log('/saveUser has been hit: ', user);
-        return database.storeUser(user).then(function(res) {
-            console.log('saveUser res: ', res);
-            response.json(res);
-        }).catch(function(err) {
-            console.log('saveUser err: ', err);
-            response.json(err);
-        });
+    webServer.get('/cool', function(request, response) {
+        console.log('/ has been hit, returning a smiley face');
+        response.send(cool());
     });
 
-    ////////////////////
-    // ENDPOINTS RETURNING MOCK DATA
-    ///////////////////
+    //webServer.get('/getAllFriends', function(request, response) {
+    //    console.log('/getAllFriends has been hit');
+    //    return database.getAllUsers().then(function(res) {
+    //        response.send(res);
+    //    }).catch(function(err) {
+    //        response.send(err);
+    //    });
+    //});
+
+    //// create application/json parser to allow specific endpoints to decipher json
+    //var jsonParser = bodyParser.json();
+
+    //webServer.post('/saveUser', jsonParser, function(request, response) {
+    //    var user = request.body;
+    //    console.log('/saveUser has been hit: ', user);
+    //    return database.storeUser(user).then(function(res) {
+    //        console.log('saveUser res: ', res);
+    //        response.json(res);
+    //    }).catch(function(err) {
+    //        console.log('saveUser err: ', err);
+    //        response.json(err);
+    //    });
+    //});
+    //
+
+
+    //////////////////////
+    //// ENDPOINTS RETURNING MOCK DATA
+    /////////////////////
     webServer.get('/mockFriends', function(request, response) {
         console.log('/friends ahs been hit');
         var mockFriends = [{
@@ -67,31 +78,31 @@ function addRoutes(webServer) {
     });
 
     ////////////////////
-    // ENDPOINTS RETURNING TOP SECRET INFO
+    // ENDPOINTS RETURNING DRUSY DEBUGGING
     ///////////////////
     webServer.get('/cool', function(request, response) {
         console.log('/cool has been hit, returning a smiley face');
         response.send(cool());
     });
 
-    webServer.get('/showTables', function(request, response) {
-        console.log('/queries has been hit, returning all tables in the database \'rollcall\'');
-        response.send(database.showTables().then(function(response) {
-            response.send(response);
-        }).catch(function(err) {
-            console.log(err);
-            response.send(err);
-        }));
-    });
-
+    //webServer.get('/showTables', function(request, response) {
+    //    console.log('/queries has been hit, returning all tables in the database \'rollcall\'');
+    //    response.send(database.showTables().then(function(response) {
+    //        response.send(response);
+    //    }).catch(function(err) {
+    //        console.log(err);
+    //        response.send(err);
+    //    }));
+    //});
+    //
     webServer.get('/showDatabases', function(request, response) {
         console.log('/showDatabases has been hit, returning all database');
-        response.send(database.showDatabases().then(function(response) {
+        return database.showDatabases().then(function(response) {
             response.send(response);
         }).catch(function(err) {
             console.log(err);
             response.send(err);
-        }));
+        });
     });
 }
 
