@@ -38,7 +38,7 @@ Endpoints: (just run 'curl localhost:5000' + endpoint to hit it from the command
 
 Examples:
     save a user in the database
-        curl -X POST -H "Content-Type: application/json" --data '{"name":"jesse wiz", "schedule":"free", "mood":"happy"}' http://localhost:5000/saveUser
+        curl -X POST -H "Content-Type: application/json" --data '{"name":"jesse wiz", "email":"jessekoconnor@gmail.com", "password":"myPassword"}' http://localhost:5000/saveUser
 
     return all the users in the database
         curl localhost:5000/getAllFriends
