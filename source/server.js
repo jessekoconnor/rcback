@@ -5,7 +5,7 @@ const express = require('express');
 const router = require('./routes');
 
 // Constants
-const PORT = 8080;
+const PORT = 80;
 
 // App
 const app = express();
