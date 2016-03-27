@@ -9,7 +9,7 @@ const cool = require('cool-ascii-faces');
 var database = require('./database');
 //var multer = require('multer'); // v1.0.5
 //var upload = multer(); // for parsing multipart/form-data
-//var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 
 /**
  * Takes a webserver and adds routes to it
@@ -28,28 +28,27 @@ function addRoutes(webServer) {
 
     webServer.get('/db', function (request, response) {
         database.query('SELECT * FROM test_table').then(function(res) {
-            response.send(res);
+            response.send(res.rows);
         }).catch(function(err) {
             response.send(err);
         });
     });
 
-    //webServer.get('/getAllFriends', function(request, response) {
-    //    console.log('/getAllFriends has been hit');
-    //    return database.getAllUsers().then(function(res) {
-    //        response.send(res);
-    //    }).catch(function(err) {
-    //        response.send(err);
-    //    });
-    //});
+    webServer.get('/getAllUsers', function (request, response) {
+        database.query('SELECT * FROM users').then(function(res) {
+            response.send(res.rows);
+        }).catch(function(err) {
+            response.send(err);
+        });
+    });
 
-    //// create application/json parser to allow specific endpoints to decipher json
-    //var jsonParser = bodyParser.json();
+    // create application/json parser to allow specific endpoints to decipher json
+    var jsonParser = bodyParser.json();
 
     //webServer.post('/saveUser', jsonParser, function(request, response) {
     //    var user = request.body;
     //    console.log('/saveUser has been hit: ', user);
-    //    return database.storeUser(user).then(function(res) {
+    //    return database.query(user).then(function(res) {
     //        console.log('saveUser res: ', res);
     //        response.json(res);
     //    }).catch(function(err) {
@@ -57,7 +56,7 @@ function addRoutes(webServer) {
     //        response.json(err);
     //    });
     //});
-    //
+
 
 
     //////////////////////
