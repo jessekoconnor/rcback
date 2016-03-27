@@ -1,11 +1,5 @@
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'treestump',
-    database : 'rollcall'
-});
-var Q = require('q');
+const Q = require('q');
+const pg = require('pg');
 
 /**
  * Executes a query into the database
@@ -14,52 +8,26 @@ var Q = require('q');
  */
 function makeQuery(query) {
     return Q.Promise(function(resolve, reject) {
-        connection.query(query, function(err, rows, fields) {
-            if (err) {
-                console.log(err);
+        pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+            if(err) {
+                console.error('database connection error: ', err);
                 reject(err);
+            } else {
+                client.query(query, function(err, result) {
+                    done();
+                    if (err) {
+                        console.error('database query error: ', err);
+                        reject("Error " + err);
+                    } else {
+                        resolve(result);
+                    }
+                });
             }
-
-            resolve(rows);
         });
     });
-}
-
-/**
- * Get all the users returned
- */
-function getAllUsers() {
-    return makeQuery('SELECT * FROM users');
-}
-
-/**
- * Store a user in the user database
- */
-function storeUser(user) {
-    var queryString = "INSERT INTO users (`name`, `schedule`, `mood`) VALUES ('" + user.name + "', '" + user.schedule + "', '" + user.mood + "');";
-
-    return makeQuery(queryString);
-}
-
-/**
- * Function to return all tables in the database
- */
-function showTables() {
-    return makeQuery('SHOW TABLES;');
-}
-
-/**
- * Function to return all databases
- */
-function showDatabases() {
-    return makeQuery('SHOW DATABASES;');
-}
+};
 
 module.exports = {
-    getAllUsers: getAllUsers,
-    makeQuery: makeQuery,
-    storeUser: storeUser,
-    showTables: showTables,
-    showDatabases: showDatabases,
+    query: makeQuery
 };
 

@@ -26,6 +26,14 @@ function addRoutes(webServer) {
         response.send(cool());
     });
 
+    webServer.get('/db', function (request, response) {
+        database.query('SELECT * FROM test_table').then(function(res) {
+            response.send(res);
+        }).catch(function(err) {
+            response.send(err);
+        });
+    });
+
     //webServer.get('/getAllFriends', function(request, response) {
     //    console.log('/getAllFriends has been hit');
     //    return database.getAllUsers().then(function(res) {
