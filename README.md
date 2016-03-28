@@ -1,9 +1,8 @@
 =========================================
 #RoleCall App
-#by Christopher Schwab and Jesse O'Connor
 =========================================
 
-####"Tough times don't last. Tough people do.” - Bruce Arians
+###### "Tough times don't last. Tough people do.” - Bruce Arians
 
 ###Runs on heroku, at this url. All of the time.
 
@@ -15,7 +14,6 @@
         - queries for all the users in the database
     /saveUser
         - saves a user into the database
-
 
     /mockFriends
         - returns a mock friends array
