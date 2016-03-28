@@ -50,7 +50,7 @@ function addRoutes(webServer) {
         var user = request.body;
         console.log('/saveUser has been hit: ', user);
 
-        var queryString = "INSERT INTO users (name, email, password) VALUES (" + user.name + ", " + user.email + ", " + user.password + ");";
+        var queryString = "INSERT INTO users VALUES ('" + user.name + "', '" + user.email + "', '" + user.password + "');";
 
         console.log('queryString:', queryString);
 
