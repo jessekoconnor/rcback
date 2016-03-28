@@ -52,6 +52,8 @@ function addRoutes(webServer) {
 
         var queryString = "INSERT INTO users (`name`, `email`, `password`) VALUES ('" + user.name + "', '" + user.email + "', '" + user.password + "');";
 
+        console.log('queryString:', queryString);
+
         return database.query(queryString).then(function(res) {
             console.log('saveUser res: ', res);
             response.json(res);
